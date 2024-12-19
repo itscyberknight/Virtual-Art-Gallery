@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('resources/art/art1.jpg'); /* Replace with your background image path */
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .art {
+            margin: 15px;
+            position: relative;
+        }
+
+        .art img {
+            width: 200px;
+            height: auto;
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .art img:hover {
+            transform: scale(1.1);
+        }
+
+        .details-button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: gold;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .details-button:hover {
+            background-color: darkgoldenrod;
+            transform: scale(1.05);
+        }
+
+        .dialog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .dialog-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 80%;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dialog-box p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .close-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: red;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-button:hover {
+            background-color: darkred;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .art img {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .art img {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">The Art's Leonardo Da Vinci</div>
+        <div class="gallery">
+            <!-- Add art images here -->
+            <div class="art">
+                <img src="resources/art/art2.jpg" alt="Art 1" onclick="zoomImage(this)">
+                <button class="details-button" onclick="showDetails('Art 1', 'This is a description of Art 1.')">Details</button>
+            </div>
+            <div class="art">
+                <img src="resources/art/art2.jpg" alt="Art 2" onclick="zoomImage(this)">
+                <button class="details-button" onclick="showDetails('Art 2', 'This is a description of Art 2.')">Details</button>
+            </div>
+            <div class="art">
+                <img src="resources/art/art2.jpg" alt="Art 2" onclick="zoomImage(this)">
+                <button class="details-button" onclick="showDetails('Art 2', 'This is a description of Art 2.')">Details</button>
+            </div>
+            <div class="art">
+                <img src="resources/art/art2.jpg" alt="Art 2" onclick="zoomImage(this)">
+                <button class="details-button" onclick="showDetails('Art 2', 'This is a description of Art 2.')">Details</button>
+            </div>
+            <div class="art">
+                <img src="resources/art/art2.jpg" alt="Art 2" onclick="zoomImage(this)">
+                <button class="details-button" onclick="showDetails('Art 2', 'This is a description of Art 2.')">Details</button>
+            </div>
+            <!-- Add more art as needed -->
+        </div>
+    </div>
+
+    <div class="dialog-overlay" id="dialogOverlay">
+        <div class="dialog-box" id="dialogBox">
+            <p id="dialogTitle"></p>
+            <p id="dialogDescription"></p>
+            <button class="close-button" onclick="closeDialog()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function zoomImage(img) {
+            img.style.transform = img.style.transform === 'scale(1.1)' ? 'scale(1)' : 'scale(1.1)';
+        }
+
+        function showDetails(title, description) {
+            document.getElementById('dialogTitle').textContent = title;
+            document.getElementById('dialogDescription').textContent = description;
+            document.getElementById('dialogOverlay').style.display = 'flex';
+        }
+
+        function closeDialog() {
+            document.getElementById('dialogOverlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
